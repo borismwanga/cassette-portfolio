@@ -1,0 +1,74 @@
+@keyframes flicker {
+    0% { opacity: 0.97; }
+    5% { opacity: 0.95; }
+    10% { opacity: 0.97; }
+    15% { opacity: 0.94; }
+    20% { opacity: 0.98; }
+    50% { opacity: 0.95; }
+    80% { opacity: 0.98; }
+    100% { opacity: 0.95; }
+  }
+  
+  @keyframes crtAnimation {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 10000%; }
+  }
+  
+  @keyframes textShadow {
+    0% {
+      text-shadow: 0.4389924193300864px 0 1px rgba(255,213,44,0.1), -0.4389924193300864px 0 1px rgba(255,92,0,0.1), 0 0 3px;
+    }
+    5% {
+      text-shadow: 2.7928974010788217px 0 1px rgba(255,213,44,0.1), -2.7928974010788217px 0 1px rgba(255,92,0,0.1), 0 0 3px;
+    }
+    100% {
+      text-shadow: 0.4389924193300864px 0 1px rgba(255,213,44,0.1), -0.4389924193300864px 0 1px rgba(255,92,0,0.1), 0 0 3px;
+    }
+  }
+  
+  .crt-wrapper {
+    @apply h-screen w-screen overflow-hidden bg-[#111];
+  }
+  
+  .crt {
+    @apply h-full w-full relative;
+  }
+  
+  .crt::before {
+    content: " ";
+    @apply block absolute top-0 left-0 bottom-0 right-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))];
+    z-index: 2;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+  }
+  
+  .crt::after {
+    content: " ";
+    @apply block absolute top-0 left-0 bottom-0 right-0;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+  }
+  
+  .screen {
+    @apply w-full h-full bg-[#111];
+    animation: textShadow 1.6s infinite;
+  }
+  
+  .old-crt-monitor {
+    box-shadow: inset 0px 0px 2rem #000;
+    background-image: linear-gradient(0deg, #0000 10%, #fff1 90%, #0000 100%);
+    animation: crtAnimation 100s linear infinite;
+    background-size: 100% 80%;
+  }
+  
+  /* RGB split effect on text */
+  .screen * {
+    position: relative;
+    text-shadow: 
+      0.1px 0 0 rgba(255, 0, 0, 0.4),
+      -0.1px 0 0 rgba(0, 255, 0, 0.4),
+      0 0 0 rgba(0, 0, 255, 0.4);
+  }
