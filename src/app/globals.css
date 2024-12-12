@@ -22,6 +22,11 @@ body {
 
 
 }
+/*pixeled image*/
+.pixelated {
+  image-rendering: pixelated;
+}
+
 
 @layer base {
   :root {
